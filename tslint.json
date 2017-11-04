@@ -1,0 +1,13 @@
+{
+    "defaultSeverity": "error",
+    "extends": ["tslint:recommended", "tslint-eslint-rules"],
+    "rules": {
+        "indent": [true, "spaces", 4],
+        "no-consecutive-blank-lines": [true, 2],
+        "object-curly-spacing": [true, "never"],
+        "object-literal-sort-keys": false,
+        "object-shorthand": false,
+        "prefer-const": false,
+        "quotemark": [true, "single"]
+    }
+}

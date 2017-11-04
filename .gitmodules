@@ -1,0 +1,3 @@
+[submodule "legacy-app"]
+	path = legacy-app
+	url = git@github.com:Igonato/legacy-angularjs-app.git

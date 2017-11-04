@@ -1,0 +1,15 @@
+###Node###
+
+# Dependency directory
+node_modules
+
+# Logs
+logs
+*.log
+
+###Build###
+dist
+
+
+###Coverage###
+coverage
