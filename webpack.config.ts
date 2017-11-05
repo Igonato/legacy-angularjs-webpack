@@ -137,7 +137,7 @@ const ANGULARJS_TEMPLATE_LOADER = {
  *      (see `new ExtractTextPlugin(...)` in the plugins section)
  *  - use - loader to process files
  *
- * Note: `importLoaders: 1` css-loader option is required by postcss-loader
+ * Note: `importLoaders: 1` css-loader option is required by postcss
  */
 const CSS_LOADERS = isTest ? ['null-loader'] : ExtractTextPlugin.extract({
     fallback: {loader: 'style-loader', options: {sourceMap: true}},
@@ -151,6 +151,13 @@ const CSS_LOADERS = isTest ? ['null-loader'] : ExtractTextPlugin.extract({
 });
 
 
+/**
+ * Rules
+ *
+ * Associations between loaders and source files
+ *
+ * Reference: https://webpack.js.org/configuration/module/#rule
+ */
 config.module = {rules: [
     /**
      * JavaScript
@@ -160,6 +167,7 @@ config.module = {rules: [
         exclude: /(node_modules|bower_components)/,
         use: [BABEL_LOADER, ANGULARJS_TEMPLATE_LOADER],
     },
+
     /**
      * Stylesheets
      */
@@ -167,13 +175,15 @@ config.module = {rules: [
     {test: /\.s[ac]ss$/, use: [...CSS_LOADERS, 'sass-loader']},
     {test: /\.less$/, use: [...CSS_LOADERS, 'less-loader']},
     {test: /\.styl$/, use: [...CSS_LOADERS, 'stylus-loader']},
+
     /**
      * Assets
+     *
+     * Use url-loader to transform files less than 10 kB into `data:` urls
      */
-    // TODO: url-loader
     {
         test: /\.(png|jpg|jpeg|gif|svg|woff|woff2|ttf|eot)$/,
-        loader: 'file-loader',
+        use: {loader: 'url-loader', options: {limit: 10000}},
     },
     /**
      * Templates
@@ -182,7 +192,7 @@ config.module = {rules: [
     // TODO: test pug/jade
     {
         test: /\.html$/,
-        loader: 'raw-loader',
+        use: {loader: 'html-loader', options: {minimize: isProd}},
     },
     {
         test: /\.(pug|jade)$/,

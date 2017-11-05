@@ -68,6 +68,7 @@
     "stylus-loader": "^3.0.1",
     "ts-node": "^3.3.0",
     "typescript": "^2.5.3",
+    "url-loader": "^0.6.2",
     "webpack": "^3.8.1",
     "webpack-dev-server": "^2.9.3"
   }
